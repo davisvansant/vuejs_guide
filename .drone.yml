@@ -1,0 +1,10 @@
+kind: pipeline
+name: default
+
+steps:
+- name: installation
+  image: node:12.18.1-slim
+  commands:
+  - npm install -g vue
+  - npm install -g @vue/cli
+  - vue --version
