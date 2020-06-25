@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Template Syntax</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+
+  <div id="some_message">
+    <span>Message: {{ msg }}</span>
+    <span v-once>This will never change: {{ msg }}</span>
+  </div>
+
+  <script>
+    var some_message = new Vue({
+      el: '#some_message',
+      data: {
+        msg: 'Hi!'
+      }
+    })
+  </script>
+
+  <div id="some_html">
+    <p>Using mustaches: {{ rawHtml }}</p>
+    <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+  </div>
+
+  <script>
+    let some_html = new Vue({
+      el: '#some_html',
+      data: {
+        rawHtml: '<span style="color:red">This should be red.</span>'
+      }
+    })
+  </script>
+
+  <!-- <div v-bind:id="dynamicId"> -->
+
+  <div id="dynamicId">
+    <button v-bind:disabled="isButtonDisabled">Button</button>
+  </div>
+
+  <script>
+    var dynamicId = new Vue({
+      el: '#dynamicId',
+      computed: {
+        isButtonDisabled: function() {
+          return true;
+        }
+      }
+    })
+  </script>
+
+  <div id="some_number">
+    {{ number + 1 }}
+  </div>
+
+  <script>
+    let some_number = new Vue({
+      el: '#some_number',
+      data: {
+        number: 10
+      }
+    })
+  </script>
+
+  <div id="some_ok">
+    {{ ok ? 'YES' : 'NO' }}
+  </div>
+
+  <script>
+    let some_ok = new Vue({
+      el: '#some_ok',
+      data: {
+        ok: false
+      }
+    })
+  </script>
+
+  <div id="some_other_message">
+    {{ message.split('').reverse().join('') }}
+  </div>
+
+  <script>
+    let some_other_message = new Vue({
+      el: '#some_other_message',
+      data: {
+        message: 'Splitting it all up'
+      }
+    })
+  </script>
+
+  <div v-bind:id="'list-' + id"></div>
+
+  <script>
+    let id = new Vue({
+      el: '#id',
+      data: {
+        list: "awesome"
+      }
+    })
+  </script>
+
+  <!-- {{ var a = 1 }}
+
+  {{ if (ok) { return message } }} -->
+
+  <p id="seen" v-if="seen">Now you see me</p>
+
+  <script>
+    let something_seen = new Vue({
+      el: '#seen',
+      computed: {
+          seen: function() {
+            return true;
+        }
+      }
+    })
+  </script>
+
+  <a id="url" v-bind:href="url">Visit W3Schools</a>
+
+  <script>
+    let some_url = new Vue({
+      el: '#url',
+      data: {
+        // url: 'https://www.w3schools.com'
+        url: 'http://somethingawesome.com'
+      }
+    })
+  </script>
+
+  <a id="some_clicker" v-on:click="doSomething">Clicker</a>
+
+  <script>
+    let some_clicker = new Vue({
+      el: '#some_clicker',
+      methods: {
+        doSomething: function() {
+          alert('hi from clicker!');
+        }
+      }
+    })
+  </script>
+
+  <a id="some_attribute_url" v-bind:[attributename]="url"> vues </a>
+
+  <script>
+    let some_attribute_url = new Vue({
+      el: '#some_attribute_url',
+      data: {
+        attributename: 'href',
+        url: 'http://www.hrefs.com'
+      }
+    })
+  </script>
+
+  <a id="another_clicker" v-on:[eventname]="doSomething"> Another clicker </a>
+
+  <script>
+    let another_clicker = new Vue({
+      el: '#another_clicker',
+      data: {
+        eventname: 'click',
+        doSomething: function() {
+          alert('hi from another clicker!');
+        }
+      }
+    })
+  </script>
+
+  <!-- <a v-bind:['foo' + bar]="value"> ... </a> -->
+
+  <!-- <form v-on:submit.prevent="onSubmit"> ... </form>
+
+  <a v-bind:href="url"> ... </a>
+
+  <a :href="url"> ... </a>
+
+  <a :[key]="url"> ... </a>
+
+  <a v-on:click="doSomething"> ... </a>
+
+  <a @click="doSomething"> ... </a>
+
+
+
+    <a @[event]="doSomething"> ... </a> -->
+
+
+
+
+</body>
+</html>
