@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Hello from Vue!</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+
+  <div id="hi" v-bind:class="{ active: isactive }">
+  </div>
+
+  <script>
+    let vm = new Vue({
+      el: '#hi',
+      data: {
+        isactive: false
+      }
+    })
+  </script>
+
+  <div
+  id="static"
+  class="static"
+  v-bind:class="{ active: are_we_active, 'text-danger' : has_some_error }">
+  </div>
+
+  <script>
+    let static = new Vue({
+      el: '#static',
+      data: {
+        are_we_active: false,
+        has_some_error: false
+      }
+    })
+  </script>
+
+  <div id="not_inline" v-bind:class="classObject"></div>
+
+  <script>
+    let not_inline = new Vue({
+      el: '#not_inline',
+      data: {
+        classObject: {
+          active: false,
+          'text-danger': false
+        }
+      }
+    })
+  </script>
+
+  <div id="computed" v-bind:class="classObject"></div>
+
+  <script>
+    let computed = new Vue({
+      el: '#computed',
+      data: {
+        is_active: true,
+        error: null
+      },
+      computed: {
+        classObject: function() {
+          return {
+            active: this.is_active && !this.error,
+            'text-danger': this.error && this.error.type === 'fatal'
+          }
+        }
+      }
+    })
+  </script>
+
+  <div id="some_array" v-bind:class="[ activeClass, errorClass ]"></div>
+
+  <script>
+    let some_array = new Vue({
+      el: '#some_array',
+      data: {
+        activeClass: 'active',
+        errorClass: 'text-danger'
+      }
+    })
+  </script>
+
+  <div id="some_ternary" v-bind:class="[ isActive ? activeClass: '', errorClass ]"></div>
+
+  <script>
+    let some_ternary = new Vue({
+      el: '#some_ternary',
+      data: {
+        isActive: false,
+        activeClass: 'active',
+        errorClass: 'text-danger'
+      }
+    })
+  </script>
+
+  <div id="another_array" v-bind:class="[ { active: isActive }, errorClass ]"></div>
+
+  <script>
+    let another_array = new Vue({
+      el: '#another_array',
+      data: {
+        isActive: false,
+        errorClass: 'some-crazy-error'
+      }
+    })
+  </script>
+
+  <my-component id="my-component" class="baz boo"></my-component>
+
+  <script>
+    Vue.component('my-component', {
+      template: '<p class="foo bar">Hi</p>'
+    })
+
+    let my_component = new Vue({
+      el: '#my-component'
+    })
+  </script>
+
+  <div id="some_awesome_object" v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
+
+  <script>
+    let some_awesome_object = new Vue({
+      el: '#some_awesome_object',
+      data: {
+        activeColor: 'red',
+        fontSize: 30
+      }
+    })
+  </script>
+
+  <div id="some_style_object" v-bind:style="styleObject"></div>
+
+  <script>
+    let style_object = new Vue({
+      el: '#some_style_object',
+      data: {
+        styleObject: {
+          color: 'red',
+          fontSize: '13px'
+        }
+      }
+    })
+  </script>
+
+  <div id="array_syntax" v-bind:style="[baseStyles, overridingStyles]"></div>
+
+  <script>
+    let array_syntax = new Vue({
+      el: '#array_syntax',
+      data: {
+        baseStyles: {
+          color: 'blue',
+          fontSize: 20
+        },
+        overridingStyles: {
+          color: 'yellow',
+          fontSize: 10
+        }
+      }
+    })
+  </script>
+
+</body>
+</html>
